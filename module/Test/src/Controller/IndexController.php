@@ -6,8 +6,28 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
-    public function indexAction()
+	const PDF_FILE = __DIR__ . '/../../../../data/alice-in-wonderland.pdf';
+    public function jsonAction()
     {
-        return new ViewModel(['method' => __METHOD__]);
+		$response = $this->getResponse();
+		$response->setStatusCode('201');
+		$headers = $response->getHeaders();
+		$headers->addHeaderLine('Content-Type', 'application/json');
+		$response->setContent(json_encode($this->getRequest()->getServer()));
+		return $response;
     }
+    public function endAction()
+    {
+		$response = $this->getResponse();
+		$response->setContent('<h1>Do Not Panic: Everything is Under Control</h1>');
+		return $response;
+	}
+    public function pdfAction()
+    {
+		$response = $this->getResponse();
+		$headers = $response->getHeaders();
+		$headers->addHeaderLine('Content-Type', 'application/pdf');
+		$response->setContent(file_get_contents(self::PDF_FILE));
+		return $response;
+	}
 }

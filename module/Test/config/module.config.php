@@ -1,7 +1,7 @@
 <?php
 namespace Test;
 
-use Zend\Router\Http\Literal;
+use Zend\Router\Http\ {Literal,Segment};
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -12,17 +12,33 @@ return [
                 'options' => [
                     'route'    => '/test',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\TestController::class,
                         'action'     => 'index',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'main' => [
+                        'type' => Segment::class,
+                        'options' => [
+							'route'    => '/main[/:action]',
+							'defaults' => [
+								'controller' => Controller\IndexController::class,
+								'action'     => 'index',
+							],
+                        ],
                     ],
                 ],
             ],
         ],
     ],
-    'controllers' => [
+    'controller_plugins' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\Plugin\Whatever::class => InvokableFactory::class,
         ],
+        'aliases' => [
+			'whatever' => Controller\Plugin\Whatever::class,
+		],
     ],
     'view_manager' => [
         'template_path_stack' => [
