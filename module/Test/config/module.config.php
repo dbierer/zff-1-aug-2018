@@ -32,6 +32,14 @@ return [
             ],
         ],
     ],
+    'service_manager' => [
+		'services' => [
+			'test-service-1' => [
+				__FILE__
+			],
+			'test-service-2' => __FILE__,
+		],
+    ],
     'controller_plugins' => [
         'factories' => [
             Controller\Plugin\Whatever::class => InvokableFactory::class,
@@ -41,6 +49,9 @@ return [
 		],
     ],
     'view_manager' => [
+		'strategies' => [
+			'ViewJsonStrategy'
+		],
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],

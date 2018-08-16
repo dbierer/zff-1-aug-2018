@@ -12,5 +12,12 @@
  */
 
 return [
-    // ...
+    'service_manager' => [
+		'services' => [
+			'test-service-1' => [
+				__FILE__
+			],
+			'test-service-2' => __FILE__,
+		],
+    ],
 ];

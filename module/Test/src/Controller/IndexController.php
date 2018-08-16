@@ -2,7 +2,7 @@
 namespace Test\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Zend\View\Model\ {ViewModel,JsonModel};
 
 class IndexController extends AbstractActionController
 {
@@ -15,6 +15,10 @@ class IndexController extends AbstractActionController
 		$headers->addHeaderLine('Content-Type', 'application/json');
 		$response->setContent(json_encode($this->getRequest()->getServer()));
 		return $response;
+    }
+    public function jsonModelAction()
+    {
+		return new JsonModel($this->getRequest()->getServer());
     }
     public function endAction()
     {
@@ -29,5 +33,14 @@ class IndexController extends AbstractActionController
 		$headers->addHeaderLine('Content-Type', 'application/pdf');
 		$response->setContent(file_get_contents(self::PDF_FILE));
 		return $response;
+	}
+	public function terminalAction()
+	{
+		$viewModel = new ViewModel();
+		$viewModel->setTerminal(true);
+		$viewModel->setTemplate('test/index/terminal');
+		$viewModel->setVariable('file', __FILE__);
+		$viewModel->setVariable('method', __METHOD__);
+		return $viewModel;
 	}
 }

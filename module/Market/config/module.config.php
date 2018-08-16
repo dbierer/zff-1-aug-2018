@@ -13,7 +13,7 @@ return [
                 'options' => [
                     'route'    => '/market',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => 'market-index-controller',
                         'action'     => 'index',
                     ],
                 ],
@@ -29,14 +29,25 @@ return [
                             ],
                         ],
                     ],
+                    'view' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/view[/]',
+                            'defaults' => [
+                                'controller' => Controller\ViewController::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],
                 ],
             ],
 		],
 	],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            'market-index-controller' => Controller\Factory\IndexControllerFactory::class,
             Controller\PostController::class => Controller\Factory\PostControllerFactory::class,
+            Controller\ViewController::class => Controller\Factory\ViewControllerFactory::class,
         ],
     ],
     'view_manager' => [
