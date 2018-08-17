@@ -16,4 +16,5 @@ return [
     'Application',
     'Test',
     'Market',
+    //'GlobalEvents',
 ];

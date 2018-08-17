@@ -10,8 +10,12 @@ class IndexControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
+		// NOTE: if using ZF 2.4, you would first need to retrieve the ServiceManager from the container
+		// $serviceManager = $container->getServiceManager();
+		// then you can get any service manager services:
+		// $serviceManager->get('categories');
         $controller = new IndexController();
-        // presumably: there will be some other code to fulfill dependencies here
+        $controller->setCategories($container->get('categories'));
         return $controller;
     }
 }

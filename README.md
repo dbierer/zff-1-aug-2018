@@ -1,6 +1,33 @@
 # Zend Framework Fundamentals -- Aug 2018
 
-NOTE TO SELF: controller plugin for Test module
+NOTE TO SELF: add instructions for developer tools
+
+## Lab Notes for Mon 20 Aug 2018
+* LAB: Forms, Filters and Validators
+  * Step #14 in PostController::indexAction() *do not* use the `else` clause and *do not* do a 	`redirect()`!!!
+  * Probably good idea to know structure of the database table:
+```
+CREATE TABLE `listings` (
+  `listings_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category` char(16) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_expires` timestamp NULL DEFAULT NULL,
+  `description` varchar(4096) DEFAULT NULL,
+  `photo_filename` varchar(1024) DEFAULT NULL,
+  `contact_name` varchar(255) DEFAULT NULL,
+  `contact_email` varchar(255) DEFAULT NULL,
+  `contact_phone` varchar(32) DEFAULT NULL,
+  `city` varchar(128) DEFAULT NULL,
+  `country` char(2) NOT NULL,
+  `price` decimal(12,2) NOT NULL,
+  `delete_code` char(16) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`listings_id`),
+  KEY `title` (`title`),
+  KEY `category` (`category`),
+  KEY `delete_code` (`delete_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8
+```
 
 ## Lab Notes for Fri 17 Aug 2018
 * LAB: Creating and Accessing a Service
@@ -38,3 +65,7 @@ vendor/bin/generate-factory-for-class
 ```
 vendor/bin/generate-factory-for-class Market\\Controller\\IndexController
 ```
+
+## Class Notes Fri 17 Aug
+* Link for Zend\Filter docs: https://docs.zendframework.com/zend-filter/
+* Link for Zend\Validator: https://docs.zendframework.com/zend-validator/
