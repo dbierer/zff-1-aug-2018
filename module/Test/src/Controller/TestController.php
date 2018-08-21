@@ -1,6 +1,7 @@
 <?php
 namespace Test\Controller;
 
+use GlobalEvents\Manager;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -8,8 +9,11 @@ class TestController extends AbstractActionController
 {
 	protected $s1;
 	protected $s2;
+	protected $em;
     public function indexAction()
     {
+		$em = Manager::getInstance();
+		$em->trigger('XYZ', $this, ['param' => __CLASS__]);
 		$param = $this->params()->fromQuery('test', 'NOT FOUND');
         return new ViewModel(
 			[
@@ -28,5 +32,9 @@ class TestController extends AbstractActionController
 	public function setTestService2($s2)
 	{
 		$this->s2 = $s2;
+	}
+	public function setGlobalEventManager($em)
+	{
+		$this->em = $em;
 	}
 }

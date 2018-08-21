@@ -43,4 +43,10 @@ class IndexController extends AbstractActionController
 		$viewModel->setVariable('method', __METHOD__);
 		return $viewModel;
 	}
+	public function eventAction()
+	{
+		$em = $this->getEventManager();
+		$em->trigger('WHATEVER', $this, ['method' => __METHOD__]);
+		return new JsonModel(['what' => 'too lazy to create a view']);
+	}
 }

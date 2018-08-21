@@ -50,6 +50,12 @@ return [
             Controller\ViewController::class => Controller\Factory\ViewControllerFactory::class,
         ],
     ],
+    'service_manager' => [
+		'factories' => [
+			Form\PostForm::class => Form\Factory\PostFormFactory::class,
+			Form\PostFilter::class => Form\Factory\PostFilterFactory::class,
+		],
+    ],
     'view_manager' => [
 		'template_map' => include __DIR__ . '/../template_map.php',
         //'template_path_stack' => [__DIR__ . '/../view'],

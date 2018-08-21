@@ -2,10 +2,28 @@
 namespace Test;
 
 use Test\Controller\TestController;
+use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 class Module
 {
+	public function onBootstrap(MvcEvent $e)
+	{
+		$em = $e->getApplication()->getEventManager();
+		$shared = $em->getSharedManager();
+		$shared->attach(
+			'*',
+			'WHATEVER', 
+			function ($e) { 
+				echo '<pre>';
+				echo __CLASS__ . PHP_EOL;
+				echo 'Event Name: ' . $e->getName() . PHP_EOL;
+				echo 'Event Target: ' . get_class($e->getTarget()) . PHP_EOL;
+				echo 'Event Params: ' . var_export($e->getParams(), TRUE);
+				echo '</pre>';
+			}
+		);
+	}
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
