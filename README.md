@@ -2,6 +2,11 @@
 
 NOTE TO SELF: add instructions for developer tools
 NOTE TO SELF: find the ZF cheat sheet
+NOTE TO SELF: upload ZDBSQL examples to repo
+NOTE TO SELF: upload example using a TableGateway\Feature
+
+## Lab Notes for Fri 24 Aug 2018
+* Lab: Database
 
 ## Lab Notes for Wed 22 Aug 2018
 * Lab: Events
@@ -84,5 +89,28 @@ vendor/bin/generate-factory-for-class Market\\Controller\\IndexController
 * Link for Zend\Filter docs: https://docs.zendframework.com/zend-filter/
 * Link for Zend\Validator: https://docs.zendframework.com/zend-validator/
 
+## Class Notes for Wed 22 Aug
+* List of reserved `Module::get*Config()` methods: https://docs.zendframework.com/zend-modulemanager/module-manager/
+* Also: `Module::init()` and `Module::onBootstrap()`
+
 ## ERRATA
 * http://localhost:9999/#/9/2: "registeration" s/be
+* http://localhost:9999/#/10/12: re: Zend\Db\Adapter\Adapter::query()
+  * Default value for 2nd arg is Adapter::QUERY_MODE_PREPARE
+    * If so, return value is a Zend\Db\Adapter\Driver\StatementInterface instance
+    * All you need to do is to run `$statement->execute()` to get results
+* http://localhost:9999/#/10/37: This line should not be there: `$userTable = $container->get('model-user-table');`
+
+* Where and Predicates Code Example:
+  * To produce this SQL:
+```
+SELECT `names`.`first_name` AS `fn`, `names`.`last_name` AS `ln`,
+        `names`.`city` AS `city` FROM `names` WHERE `city` LIKE '%moon%' OR
+        `city` LIKE '%lake%'
+```
+$select->from('names')
+       ->columns(['fn' => 'names.first_name', 'ln' => 'names.last_name', 'city'])
+       ->where(
+          (new Where())->nest->like('%moon%')->or->like('%lake%')->unnest);
+```
+        

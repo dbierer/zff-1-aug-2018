@@ -3,6 +3,7 @@ namespace Test;
 
 use Test\Controller\TestController;
 use Zend\Mvc\MvcEvent;
+use Zend\Db\Adapter\Adapter;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 class Module
@@ -36,6 +37,17 @@ class Module
 					__FILE__
 				],
 				'test-service-2' => __FILE__,
+				'test-adapter-config' => [
+					'driver' => 'PDO',
+					'dsn' => 'mysql:hostname=localhost;dbname=onlinemarket',
+					'username' => 'vagrant',
+					'password' => 'vagrant',
+				],
+			],
+			'factories' => [
+				'test-adapter' => function ($container) {
+					return new Adapter($container->get('test-adapter-config'));
+				},
 			],
 		];
 	}
@@ -48,6 +60,7 @@ class Module
 					$controller = new TestController();
 					$controller->setTestService1($container->get('test-service-1'));
 					$controller->setTestService2($container->get('test-service-2'));
+					$controller->setAdapter($container->get('test-adapter'));
 					return $controller;
 				},
 			],

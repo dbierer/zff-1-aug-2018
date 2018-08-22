@@ -10,3 +10,6 @@
 <li>Test Service 2: <?= $this->s2; ?></li>
 <li>Test Service 1: <pre><?= implode(PHP_EOL, $this->s1); ?></pre></li>
 </ul>
+<?php foreach ($this->results as $row) : ?>
+<?php \Zend\Debug\Debug::dump($row); ?>
+<?php endforeach; ?>

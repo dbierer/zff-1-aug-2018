@@ -47,11 +47,16 @@
             </div>
         </nav>
         <div class="container">
+			<div class="col-lg-2">
+				<?php echo (!empty($this->categories)) ? $this->htmlList($this->categories) : ''; ?>
+			</div>
+			<div class="col-lg-10">
             <?= $this->content ?>
             <hr>
             <footer>
                 <p>&copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd. All rights reserved.</p>
             </footer>
+            </div>
         </div>
         <?= $this->inlineScript() ?>
     </body>
