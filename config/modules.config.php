@@ -20,8 +20,10 @@ return [
     'Zend\Hydrator',
     'Zend\Router',
     'Zend\Validator',
+    'ZendDeveloperTools',
     'Application',
     'Test',
     'Market',
     'GlobalEvents',
+    'Model',
 ];

@@ -1,5 +1,8 @@
-<h1>Online Market Main Page</h1>
+<h1>Market</h1>
 <hr>
-<?= $this->method ?>
-<?= $this->htmlList($this->categories); ?>
-<?php \Zend\Debug\Debug::dump($this->request); ?>
+<?php
+   if (!empty($this->messages)) {
+        echo $this->htmlList($this->messages);
+    }
+?>
+<?= $this->partial('market/partials/item', ['item' => $this->item]); ?>

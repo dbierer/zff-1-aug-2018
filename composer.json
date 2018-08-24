@@ -28,6 +28,7 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "Market\\": "module/Market/src/",
+            "Model\\": "module/Model/src/",
             "GlobalEvents\\": "module/GlobalEvents/src/",
             "Test\\": "module/Test/src/"
         }
@@ -49,5 +50,8 @@
         ],
         "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
         "test": "phpunit"
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "^1.2"
     }
 }

@@ -42,6 +42,13 @@ return [
 					7  => 'Week',
 					30 => 'Month',
 			],
+			'expire-days-intervals' => [
+					0  => 'P99Y',
+					1  => 'P1D',
+					7  => 'P1W',
+					30 => 'P1M',
+					'default' => 'P99Y',
+			],
 			'captcha-options' => [
 				'expiration' => 300,
 				'font'      => __DIR__ . '/../../public/fonts/FreeSansBold.ttf',

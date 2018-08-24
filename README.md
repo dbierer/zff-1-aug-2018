@@ -1,10 +1,5 @@
 # Zend Framework Fundamentals -- Aug 2018
 
-NOTE TO SELF: add instructions for developer tools
-NOTE TO SELF: find the ZF cheat sheet
-NOTE TO SELF: upload ZDBSQL examples to repo
-NOTE TO SELF: upload example using a TableGateway\Feature
-
 ## Lab Notes for Fri 24 Aug 2018
 * Lab: Database
 
@@ -108,9 +103,21 @@ SELECT `names`.`first_name` AS `fn`, `names`.`last_name` AS `ln`,
         `names`.`city` AS `city` FROM `names` WHERE `city` LIKE '%moon%' OR
         `city` LIKE '%lake%'
 ```
+```
 $select->from('names')
        ->columns(['fn' => 'names.first_name', 'ln' => 'names.last_name', 'city'])
        ->where(
           (new Where())->nest->like('%moon%')->or->like('%lake%')->unnest);
 ```
-        
+
+## GENERAL NOTES
+* NOTE TO SELF: add instructions for developer tools
+  * https://github.com/zendframework/zend-developer-tools
+* NOTE TO SELF: find the ZF cheat sheet
+  * http://okeowoaderemi.com/site/assets/files/1103/zf2-flowchart.jpg
+* NOTE TO SELF: upload ZDBSQL examples to repo
+  * https://github.com/dbierer/zf3-examples/tree/master/stand_alone_examples
+  * Will try to find more later
+* NOTE TO SELF: upload example using a TableGateway\Feature
+  * https://github.com/dbierer/zf3-examples/blob/master/guestbook/module/Guestbook/src/Mapper/Guestbook.php
+

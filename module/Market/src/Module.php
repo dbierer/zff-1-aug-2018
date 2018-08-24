@@ -2,6 +2,7 @@
 namespace Market;
 
 use Zend\Mvc\MvcEvent;
+use Model\Interfaces\ListingsTableAwareInterface;
 
 class Module
 {
@@ -22,4 +23,17 @@ class Module
     {
         return include __DIR__ . '/../config/module.config.php';
     }
+    public function getControllerConfig()
+    {
+		// NOTE: use "initializers" with *extreme caution*!!!
+		return [
+			'initializers' => [
+				'market-inject-listings-table' => function ($container, $instance) {
+					if ($instance instanceof ListingsTableAwareInterface) {
+						$instance->setListingsTable($container->get(\Model\Table\Listings::class));
+					}
+				}
+			]
+		];
+	}
 }

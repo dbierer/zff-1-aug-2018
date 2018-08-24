@@ -30,14 +30,37 @@ return [
                         ],
                     ],
                     'view' => [
-                        'type' => Segment::class,
+                        'type' => Literal::class,
                         'options' => [
-                            'route' => '/view[/]',
+                            'route' => '/view',
                             'defaults' => [
                                 'controller' => Controller\ViewController::class,
                                 'action'     => 'index',
                             ],
                         ],
+						'may_terminate' => true,
+						'child_routes' => [
+							'category' => [
+								'type' => Segment::class,
+								'options' => [
+									'route' => '/category[/:category]',
+									'defaults' => [
+										'controller' => Controller\ViewController::class,
+										'action'     => 'index',
+									],
+								],
+							],
+							'item' => [
+								'type' => Segment::class,
+								'options' => [
+									'route' => '/item[/:id]',
+									'defaults' => [
+										'controller' => Controller\ViewController::class,
+										'action'     => 'item',
+									],
+								],
+							],
+						],
                     ],
                 ],
             ],
@@ -57,7 +80,7 @@ return [
 		],
     ],
     'view_manager' => [
-		'template_map' => include __DIR__ . '/../template_map.php',
-        //'template_path_stack' => [__DIR__ . '/../view'],
+		//'template_map' => include __DIR__ . '/../template_map.php',
+        'template_path_stack' => [__DIR__ . '/../view'],
     ],
 ];

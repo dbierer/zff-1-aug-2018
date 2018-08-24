@@ -48,7 +48,7 @@
         </nav>
         <div class="container">
 			<div class="col-lg-2">
-				<?php echo (!empty($this->categories)) ? $this->htmlList($this->categories) : ''; ?>
+				<?php echo (!empty($this->categories)) ? $this->leftLinks($this->categories, '/market/view/category') : ''; ?>
 			</div>
 			<div class="col-lg-10">
             <?= $this->content ?>
