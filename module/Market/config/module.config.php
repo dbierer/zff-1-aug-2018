@@ -15,6 +15,7 @@ return [
                     'defaults' => [
                         'controller' => 'market-index-controller',
                         'action'     => 'index',
+                        'module'     => __NAMESPACE__,
                     ],
                 ],
                 'may_terminate' => true,

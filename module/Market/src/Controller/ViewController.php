@@ -16,7 +16,12 @@ class ViewController extends AbstractActionController implements ListingsTableAw
 			$this->flashMessenger()->addMessage('No Category Found');
 			return $this->redirect()->toRoute('market');
 		}
-		return new ViewModel(['category' => $category, 'listing' => $this->listingsTable->findByCategory($category)]);
+		return new ViewModel(
+			[
+				'category' => $category, 
+				'listing' => $this->listingsTable->findByCategory($category)
+			]
+		);
     }
     public function itemAction()
     {

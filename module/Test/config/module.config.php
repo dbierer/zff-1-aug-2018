@@ -14,6 +14,7 @@ return [
                     'defaults' => [
                         'controller' => Controller\TestController::class,
                         'action'     => 'index',
+                        'module'     => __NAMESPACE__,
                     ],
                 ],
                 'may_terminate' => true,

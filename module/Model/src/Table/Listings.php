@@ -59,7 +59,7 @@ class Listings extends TableGateway
 		try {
 			$result = $this->insert($data);
 		} catch (Exception $e) {
-			// log the info
+			// log the info: in the VM it's here: /var/log/apache2/error.log
 			error_log(__METHOD__ . ':' . $e->getMessage());
 			$result = FALSE;
 		}

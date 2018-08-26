@@ -49,4 +49,25 @@ class IndexController extends AbstractActionController
 		$em->trigger('WHATEVER', $this, ['method' => __METHOD__]);
 		return new JsonModel(['what' => 'too lazy to create a view']);
 	}
+	public function routeAction()
+	{
+		$routeMatch = $this->getEvent()->getRouteMatch();
+		$response = $this->getResponse();
+		$response->setContent(var_export($routeMatch, TRUE));
+		return $response;
+	}
+	public function sessionAction()
+	{
+		$container = new \Zend\Session\Container('Test');
+		$container->setExpirationSeconds(10);
+		$container->xyz = 'Whatever';
+		$container->abc = 'Anything';
+		return new ViewModel();
+	}
+	public function otherAction()
+	{
+		$container = new \Zend\Session\Container('Test');
+		echo $container->xyz . ':' . $container->abc;
+		exit;
+	}
 }

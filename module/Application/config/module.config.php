@@ -21,6 +21,7 @@ return [
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
+                        'module'     => __NAMESPACE__,
                     ],
                 ],
             ],
